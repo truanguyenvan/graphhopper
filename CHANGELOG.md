@@ -1,5 +1,6 @@
 ### 7.0 [not yet released]
 
+- new osm_way_id encoded value, #2701
 - the parameters vehicle, weighting, edge_based and turn_costs are no longer supported, use the profile parameter instead
 - removed motorroad to road_class conversion, #2329
 - removed YAML support for custom models on the server-side. Only allow JSON with // comments.
