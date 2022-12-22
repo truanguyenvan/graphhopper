@@ -1,19 +1,32 @@
 graphhopper:
 
   # OpenStreetMap input file PBF or XML, can be changed via command line -Ddw.graphhopper.datareader.file=some.pbf
-  datareader.file: ""
+  # datareader.file: ""
   # Local folder used by graphhopper to store its data
   graph.location: graph-cache
+
+  ##### PostGIS Connection Parameters #####
+  # Dev
+  db.host: 10.159.137.154
+  # Demo
+  # db.host: 10.70.123.125
+  db.port: 5432
+  db.database: tilemap
+  db.table: road
+  db.schema: public
+  db.user: gis_user
+  db.passwd: GIS#p0scDb
+  db.tags_to_copy: bridge,tunnel
+
 
   ##### Vehicles #####
 
 
   # More options: foot,hike,bike,bike2,mtb,racingbike,motorcycle,car4wd,wheelchair (comma separated)
   # bike2 takes elevation data into account (like up-hill is slower than down-hill) and requires enabling graph.elevation.provider below.
-  # graph.flag_encoders: car
-
+  graph.flag_encoders: car|turn_costs=true,foot,waterbus,bike
   # Enable turn restrictions for car or motorcycle.
-  # graph.flag_encoders: car|turn_costs=true
+
 
   # Add additional information to every edge. Used for path details (#1548), better instructions (#1844) and tunnel/bridge interpolation (#798).
   # Default values are: road_class,road_class_link,road_environment,max_speed,road_access (since #1805)
@@ -50,12 +63,20 @@ graphhopper:
     - name: car
       vehicle: car
       weighting: fastest
+    - name: foot
+      vehicle: foot
+      weighting: fastest
+    - name: bike
+      vehicle: bike
+      weighting: fastest
+    - name: waterbus
+      vehicle: waterbus
+      weighting: fastest
 
   #  - name: car_with_turn_costs
   #    vehicle: car
   #    weighting: short_fastest
   #    distance_factor: 0.1
-  #    turn_costs: true
   #    u_turn_costs: 60
 
   # Speed mode:
@@ -174,13 +195,13 @@ server:
   - type: http
     port: 8989
     # for security reasons bind to localhost
-    bind_host: localhost
+    bind_host: 0.0.0.0
   request_log:
       appenders: []
   admin_connectors:
   - type: http
     port: 8990
-    bind_host: localhost
+    bind_host: 0.0.0.0
 # See https://www.dropwizard.io/en/latest/manual/core.html#logging
 logging:
   appenders:

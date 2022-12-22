@@ -335,6 +335,9 @@ public class InstructionsFromEdges implements Path.EdgeVisitor {
                 // TODO if we see issue with this approach we could consider checking if the edge is a oneway
                 return sign;
             }
+            if (!InstructionsHelper.isNameSimilar(name, prevName)) {
+                return sign;
+            }
             return Instruction.IGNORE;
         }
 

@@ -59,7 +59,12 @@ public class DefaultFlagEncoderFactory implements FlagEncoderFactory {
 
         if (name.equals(WHEELCHAIR))
             return new WheelchairFlagEncoder(configuration);
+        
+        if (name.equals(WATERBUS))
+            {
+                return new WaterbusFlagEncoder(configuration);
+            }
 
-        throw new IllegalArgumentException("entry in encoder list not supported: " + name);
+        throw new IllegalArgumentException("entry in encoder list not supported hehe 12 3: " + name);
     }
 }

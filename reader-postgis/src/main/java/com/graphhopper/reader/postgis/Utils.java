@@ -15,25 +15,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.graphhopper.routing.util;
-
-import com.graphhopper.util.PMap;
+package com.graphhopper.reader.postgis;
 
 /**
- * @author Peter Karich
+ * @author Phil
+ * @author Robin Boldt
  */
-public interface FlagEncoderFactory {
-    String ROADS = "roads";
-    String CAR = "car";
-    String CAR4WD = "car4wd";
-    String BIKE = "bike";
-    String BIKE2 = "bike2";
-    String RACINGBIKE = "racingbike";
-    String MOUNTAINBIKE = "mtb";
-    String FOOT = "foot";
-    String HIKE = "hike";
-    String MOTORCYCLE = "motorcycle";
-    String WHEELCHAIR = "wheelchair";
-    String WATERBUS ="waterbus";
-    FlagEncoder createFlagEncoder(String name, PMap configuration);
+public class Utils {
+
+    public static RuntimeException asUnchecked(Throwable e) {
+        if (RuntimeException.class.isInstance(e)) {
+            return (RuntimeException) e;
+        }
+        return new RuntimeException(e);
+    }
+
 }
