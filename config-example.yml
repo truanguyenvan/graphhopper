@@ -16,8 +16,9 @@ graphhopper:
   db.schema: public
   db.user: gis_user
   db.passwd: GIS#p0scDb
-  db.tags_to_copy: bridge,tunnel
+  db.tags_to_copy: bridge,tunnel,type,other_tags
 
+  gtfs.file: sg_waterbus_gtfs.zip
 
   ##### Vehicles #####
 
@@ -60,18 +61,18 @@ graphhopper:
   # To prevent long running routing queries you should usually enable either speed or hybrid mode for all the given
   # profiles (see below). Otherwise you should at least limit the number of `routing.max_visited_nodes`.
   profiles:
-    - name: car
-      vehicle: car
-      weighting: fastest
     - name: foot
       vehicle: foot
-      weighting: fastest
+      weighting: shortest
+    - name: car
+      vehicle: car
+      weighting: shortest
     - name: bike
       vehicle: bike
-      weighting: fastest
+      weighting: shortest
     - name: waterbus
       vehicle: waterbus
-      weighting: fastest
+      weighting: shortest     
 
   #  - name: car_with_turn_costs
   #    vehicle: car
@@ -85,8 +86,8 @@ graphhopper:
   # list you can define for which of the above routing profiles such preparation shall be performed. Note that to support
   # profiles with `turn_costs: true` a more elaborate preparation is required (longer preparation time and more memory
   # usage) and the routing will also be slower than with `turn_costs: false`.
-  profiles_ch:
-    - profile: car
+  # profiles_ch:
+  #   - profile: car
   #   - profile: car_with_turn_costs
 
   # Hybrid mode:
