@@ -56,9 +56,9 @@ public class RouteResource {
 
     private static final Logger logger = LoggerFactory.getLogger(RouteResource.class);
 
-    private final GraphHopper graphHopper;
-    private final ProfileResolver profileResolver;
-    private final Boolean hasElevation;
+    protected final GraphHopper graphHopper;
+    protected final ProfileResolver profileResolver;
+    protected final Boolean hasElevation;
 
     @Inject
     public RouteResource(GraphHopper graphHopper, ProfileResolver profileResolver, @Named("hasElevation") Boolean hasElevation) {
@@ -208,7 +208,7 @@ public class RouteResource {
         }
     }
 
-    private void enableEdgeBasedIfThereAreCurbsides(List<String> curbsides, GHRequest request) {
+    protected void enableEdgeBasedIfThereAreCurbsides(List<String> curbsides, GHRequest request) {
         if (!curbsides.isEmpty()) {
             if (!request.getHints().getBool(TURN_COSTS, true))
                 throw new IllegalArgumentException("Disabling '" + TURN_COSTS + "' when using '" + CURBSIDE + "' is not allowed");

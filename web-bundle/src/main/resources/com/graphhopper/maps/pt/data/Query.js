@@ -18,7 +18,7 @@ const CreateQuery = (baseUrl, search) => {
     } else {
         url.searchParams.set("pt.arrive_by", false);
     }
-    url.searchParams.set("locale", "en-US");
+    url.searchParams.set("locale", "vi-VN");
     url.searchParams.set("profile", "pt");
     url.searchParams.set("pt.profile", search.rangeQuery);
     url.searchParams.set("pt.access_profile", search.accessProfile);
